@@ -63,57 +63,6 @@ RSpec.configure do |config|
                 items: { type: :string }
               }
             }
-          },
-          get_user_reservations: {
-            type: :object,
-            properties: {
-              success: { type: :boolean },
-              reservations: {
-                type: :array,
-                items: {
-                  type: :object,
-                  properties: {
-                    id: { type: :integer },
-                    start_date: { type: :datetime },
-                    end_date: { type: :datetime },
-                    size: { type: :integer },
-                    reservation_type: {
-                      type: :string,
-                      enum: Reservation.reservation_types.keys
-                    },
-                    user_id: {
-                        type: :integer,
-                        description: 'ALERT! This is deprecated, will be removed soon. Use reservations[0].user.id instead'
-                    }, # TODO: Deprecate!
-                    user: {
-                      type: :object,
-                      properties: {
-                        id: { type: :integer },
-                        name: { type: :string }
-                      }
-                    },
-                    coach_id: { type: :integer },
-                    coach: {
-                      type: :object,
-                      properties: {
-                        id: { type: :integer },
-                        name: { type: :string }
-                      }
-                    },
-                    club_id: { type: :integer },
-                    club: {
-                      type: :object,
-                      properties: {
-                        id: { type: :integer },
-                        name: { type: :string }
-                      }
-                    }
-                  },
-                  required: %i[id start_date end_date size reservation_type user_id user club]
-                }
-              }
-            },
-            required: %i[success reservations]
           }
         }
       },
